@@ -1,0 +1,93 @@
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+    mainScreen:{
+        width:'100%',
+        height:'100%',
+        padding:5,
+        justifyContent:'center',
+        alignContent:'center'
+    },
+    header:{
+        width:'100%',
+        height:'40%',
+        minHeight:150,
+        maxHeight:300,
+        justifyContent:'center',
+        alignContent:'center'
+    },
+    wrapper:{
+        width:'100%',
+        height:'60%',
+        alignContent:'center'
+    },
+    logo:{
+        width:120,
+        height:120,
+        alignSelf:'center',
+        borderRadius:60,
+        borderWidth:2,
+        padding:10,
+        borderColor:'#ffffff'
+    },
+    logoText:{
+        color:'#ffffff',
+        fontSize:14,
+        alignSelf:'center',
+        margin:10,
+    },
+    logoHeading:{
+        color:'#ffffff',
+        fontSize:20,
+        alignSelf:'center',
+        fontWeight:'bold',
+        margin:10,
+    },
+    heading:{
+        color:'#00B7A5',
+        fontSize:36,
+        alignSelf:'center',
+        fontWeight:'bold',
+        margin:10,
+    },
+    textParent:{
+        width:'90%',
+        height:40,
+        borderWidth:1,
+        borderRadius:20,
+        borderColor:'gray',
+        marginTop:10,
+        alignSelf:'center',
+        flexDirection:'row',
+        alignItems:'center',
+        paddingLeft: 10,
+    },
+    textIcon:{
+        width:'5%',
+        height:40,
+    },
+    textBox:{
+        width:'90%',
+        height:40,
+    },
+    button:{
+        width:'90%',
+        height:40,
+        justifyContent:'center',
+        alignItems:'center',
+        alignSelf:'center',
+        color:'#ffffff',
+        marginTop: 20,
+        borderRadius:10
+    },
+    actionLink:{
+        justifyContent:'center',
+        alignItems:'center',
+        alignSelf:'center',
+        color:'#00B7A5',
+        marginTop: 15,
+        borderBottomColor:'#00B7A5',
+        borderBottomWidth:1,
+    }
+    
+});
