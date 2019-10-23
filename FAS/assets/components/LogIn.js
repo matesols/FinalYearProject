@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity,AsyncStorage } from 'react-native';
 import Styles from '../css/LoginStyle';
 import LinearGredient from 'react-native-linear-gradient';
 import logo from '../images/educationFolder.png';
@@ -21,8 +21,36 @@ export default class LogIn extends Component {
     header:null,
   };
 
-  logIn = ()=>{
-    this.props.navigation.navigate('Dashboard');  
+  logIn = async()=>{
+    var c = this.state.cell;
+    var p = this.state.password;
+    if(c.trim() == ""){
+      alert("Oops! Provide valid cell number.");
+      return;
+    }
+    if(p.trim() == ""){
+      alert("Oops! Provide valid password.");
+      return;
+    }
+    fetch('http://10.0.2.2/FAS/api/Users/Get/'+c+'/'+p, {
+      method: 'GET',
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      if(responseJson == null){
+        alert('Invalid Cell number or password.');
+        return;
+      }
+      AsyncStorage.setItem('EmployeeID',responseJson.emp_no);
+      let chk;
+      AsyncStorage.getItem('EmployeeID',(res)=>{
+        chk = res;
+      });
+      alert(chk);
+      //this.props.navigation.navigate('Dashboard');
+    })
+    .catch((error) => {
+      alert(error);
+    });  
   }
 
   render() {
@@ -38,11 +66,18 @@ export default class LogIn extends Component {
               <Text style={Styles.heading}>LogIn</Text>
               <View style={Styles.textParent}>
                   <Image source={cell}/> 
-                  <TextInput placeholder="Registered Cell"/>
+                  <TextInput
+                    keyboardType='numeric'
+                    onChangeText={(cell)=> this.setState({cell})} 
+                    placeholder="Registered Cell"/>
               </View>
               <View style={Styles.textParent}>
                   <Image source={password}/> 
-                  <TextInput placeholder="Password"/>
+                  <TextInput 
+                  keyboardType='default'
+                    secureTextEntry={true}
+                    onChangeText={(password)=> this.setState({password})}
+                    placeholder="Password"/>
               </View>
               <TouchableOpacity onPress={this.logIn}>
                 <LinearGredient colors={['#00B7A5','#01919A','#02628C']} style={Styles.button}>
